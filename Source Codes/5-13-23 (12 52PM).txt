@@ -1,0 +1,576 @@
+#include <iostream>
+#include <string>
+#include <stack>
+
+
+
+using namespace std;
+// Final Project // Alegar - Cañete - Misenas - Novero - Sollestre
+
+//  Last update 7:20 PM - Sollestre  // 5-10-23
+//  Last Update 8:16 PM - Misenas    // 5-10-23
+//  Last Update 11:27 PM - 5.11.23 - Sollestre
+//  Last Update 1:29P PM - 5.12.23 - Sollestre
+//  Last Update 5:29 PM - 5-12-23 - Misenas
+//  Last Update 6:04PM - 5-12-23 - Misenas
+//  Last Update 11:13PM  5-12-23 - Misenas
+//  Last Update 12:51PM  5-13-23 - Misenas
+void arr_operations(){
+        //  MISENAS
+
+    const int MAX_SIZE = 100;
+    int arr[MAX_SIZE];
+    int n = 0;
+    char arr_choice;
+
+    do {
+        cout << endl;
+        cout << "Array Operations: " << endl;
+        cout << "[I] Insertion" << endl;
+        cout << "[D] Deletion" << endl;
+        cout << "[T] Traverse" << endl;
+        cout << "[S] Search"  << endl;
+        cout << "[E] EXIT" << endl;
+        cout << "Enter your choice: ";
+        cin >> arr_choice;
+
+        switch(arr_choice){
+
+case 'i': case 'I': // Array Insertion Operation
+        if (n == MAX_SIZE){
+            cout << "Array is full, cannot insert." << endl;
+            system("PAUSE");
+            system("CLS");
+        } else {
+        int arr_index,arr_value;
+        cout << "Enter the index to insert: ";
+        cin >> arr_index;
+        cout << "Enter value to insert: ";
+        cin >> arr_value;
+
+
+        for (int i = n; i>arr_index; i--){
+            arr[i] = arr[i - 1];
+        }
+        arr[arr_index] = arr_value;
+        n++;
+
+        cout << "Value inserted successfully." << endl;
+        system("PAUSE");
+        system("CLS");
+    }
+    break;
+    case 'd': case 'D': // Array Deletion Operation
+        if (n == 0){
+            cout << "Array is empty, cannot delete." << endl;
+            system("PAUSE");
+            system("CLS");
+        } else {
+        int arr_index;
+        cout << "Enter the index to delete: ";
+        cin >> arr_index;
+        for (int i = arr_index; i<n - 1; i++){
+            arr[i] = arr[i + 1];
+        }
+        n--;
+        cout << "Value deleted sucessfully." << endl;
+        system("PAUSE");
+        system("CLS");
+    }
+    break;
+    case 't': case 'T': // Array Traverse Operation
+        if (n == 0){
+            cout << "Array is empty." << endl;
+            system("PAUSE");
+            system("CLS");
+        } else {
+        cout << "Array contents: ";
+        for (int i = 0; i < n; i++){
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+        system("PAUSE");
+        system("CLS");
+    }
+        break;
+    case 's': case 'S': // Array Search Operation
+        if (n == 0){
+            cout << "Array is empty." << endl;
+            system("PAUSE");
+            system("CLS");
+        } else {
+        int arr_value, arr_index =-1;
+        cout << "Array contents: ";
+        for (int i = 0; i<n; i++){
+            cout << arr[i] << " ";
+        }
+            cout << endl;
+            cout << "Enter the value to search for: ";
+            cin >> arr_value;
+        for (int i = 0; i< n; i++){
+            if (arr[i] == arr_value){
+                arr_index = i;
+            }
+        }
+        if (arr_index == -1){
+            cout << "Value not found." << endl;
+            system("PAUSE");
+            system("CLS");
+        } else {
+        cout << "Value found at index " << arr_index << "." << endl;
+        system("PAUSE");
+        system("CLS");
+        }
+        }
+        break;
+    case 'e': case 'E':
+        system("CLS");
+        break;
+    default:
+        cout << "Invalid choice / Invalid Input." << endl;
+        break;
+}
+
+    } while (arr_choice != 'e' && arr_choice != 'E');
+}
+
+// Linked List declarations
+struct Node{
+    int data;
+    Node* next;
+};
+
+void linkedlist_Operation(){
+    Node* head = nullptr;
+    char linkedlist_choice;
+
+    do{
+        cout << "\nLinked List Operations\n";
+        cout << "[I] Insertion\n";
+        cout << "[D] Deletion\n";
+        cout << "[T] Traversing\n";
+        cout << "[Q] Quit\n";
+        cout << "Enter your choice: ";
+        cin >> linkedlist_choice;
+
+        switch(linkedlist_choice){
+    case 'i': case 'I': // Linked List Insertion
+        {
+        int linkedlist_value;
+        cout << "Enter the value to insert: ";
+        cin >> linkedlist_value;
+
+        Node* newNode = new Node;
+        newNode->data = linkedlist_value;
+        newNode->next = nullptr;
+
+        if (head == nullptr){
+            head = newNode;
+        } else {
+            newNode->next = head;
+            head = newNode;
+        }
+        cout << "Node inserted: " << linkedlist_value << endl;
+        system("PAUSE");
+        system("CLS");
+        break;
+        }
+    case 'd': case 'D': // Linked List Deletion
+        {
+            int linkedlist_value;
+            cout << "Enter the value to delete: ";
+            cin >> linkedlist_value;
+
+        if (head == nullptr){
+            cout << "Linked list is empty." << endl;
+            system("PAUSE");
+            system("CLS");
+            break;
+        }
+
+        if (head->data == linkedlist_value){
+            Node* temp = head;
+            head = head->next;
+            delete temp;
+            cout << "Node deleted: " << linkedlist_value << endl;
+            system("PAUSE");
+            system("CLS");
+            break;
+        }
+
+        Node* curr = head;
+        Node* prev = nullptr;
+
+        while(curr != nullptr && curr->data != linkedlist_value){
+            prev = curr;
+            curr = curr->next;
+        }
+        if (curr != nullptr){
+            prev->next = curr->next;
+            delete curr;
+            cout << "Node deleted: " << linkedlist_value << endl;
+            system("PAUSE");
+            system("CLS");
+         } else {
+            cout << "Node not found." << endl;
+            system("PAUSE");
+            system("CLS");
+         }
+         break;
+        }
+    case 't': case 'T': // Linked List Traversing
+        {
+            if (head == nullptr){
+                cout << "Linked list is empty." << endl;
+                system("PAUSE");
+                system("CLS");
+            } else {
+                cout << "Linked list: ";
+                Node* curr = head;
+
+                while (curr != nullptr){
+                    cout << curr->data << " ";
+                    curr = curr->next;
+                }
+                cout << endl;
+                system("PAUSE");
+                system("CLS");
+                cout << endl;
+            }
+
+        }
+        break;
+    case 'q': case 'Q':
+        cout << "Quitting." << endl;
+        system("PAUSE");
+        system("CLS");
+        break;
+    default:
+        cout << "Invalid input." << endl;
+        system("CLS");
+        break;
+
+
+
+
+
+}
+
+
+
+
+    } while (linkedlist_choice != 'Q' && linkedlist_choice != 'q');
+}
+
+
+
+
+
+
+void Stacks_Operation(){
+    // Sollestre
+
+    const int MAX_SIZE = 10;
+    stack <int> Stack_container, clone_stack;
+    char Stack_choice;
+    int value;
+
+    do{
+    cout << endl;
+    cout << "Stacks Operations: " << endl;
+    cout << "[1] Push" << endl;
+    cout << "[2] Pop" << endl;
+    cout << "[3] Peek" << endl;
+    cout << "[4] Full"  << endl;
+    cout << "[5] Empty" << endl;
+    cout << "[6] Display" << endl;;
+    cout << "[0] Exit" << endl;
+    cout << "Enter your choice: ";
+    cin >> Stack_choice;
+
+    switch (Stack_choice) {
+
+    case '1':
+
+        if(Stack_container.size() == MAX_SIZE){
+            cout << "Stack Overflow, cannot push\n";
+            system("PAUSE");
+            system("CLS");
+        }
+        else {
+        cout << "Enter a value to push: ";
+        cin >> value;
+
+        Stack_container.push(value);
+
+        cout << value << " pushed successfully." << endl;
+        system("PAUSE");
+        system("CLS");
+        }
+
+        break;
+
+    case '2':
+        if(Stack_container.empty()){
+            cout << "Stack is empty, cannot pop\n";
+            system("PAUSE");
+            system("CLS");
+        }
+        else{
+
+        cout << Stack_container.top() << " popped successfully.\n";
+            Stack_container.pop();
+        system("PAUSE");
+        system("CLS");
+
+        }
+
+        break;
+
+    case '3':
+
+        cout << Stack_container.top() <<" is the top element\n";
+        system("PAUSE");
+        system("CLS");
+
+        break;
+
+    case '4':
+        if (Stack_container.size() == MAX_SIZE){
+            cout << "Stack is full";
+            system("PAUSE");
+            system("CLS");
+
+        }else {
+
+        cout << "Stack is not full.\n";
+        system("PAUSE");
+        system("CLS");
+
+        }
+
+
+        break;
+
+    case '5':
+        if (Stack_container.empty()){
+            cout << "Stack is empty.\n";
+            system("PAUSE");
+            system("CLS");
+
+        }else {
+
+        cout << "Stack is not empty.\n";
+        system("PAUSE");
+        system("CLS");
+
+        }
+
+
+        break;
+
+    case '6':
+        cout << "Stack output: \n";
+        clone_stack = Stack_container;
+        while(!Stack_container.empty()){
+        cout  << Stack_container.top() << endl;
+            Stack_container.pop();
+        }
+        Stack_container = clone_stack;
+        system("PAUSE");
+        system("CLS");
+
+        break;
+
+    case '0':
+        system("CLS");
+        break;
+
+    default:
+        cout << "Invalid choice / Invalid Input." << endl;
+        system("PAUSE");
+        system("CLS");
+
+    }
+
+
+    }
+    while (Stack_choice != '0');
+
+}
+
+const int MAX_SIZE = 100;
+void queues_Operation(){
+    int queue_sizes[MAX_SIZE];
+    int front = -1;
+    int rear = -1;
+    char queues_Choice;
+    do {
+        cout << endl;
+        cout << "Queues Operations:\n";
+        cout << "[E] Enqueue\n";
+        cout << "[D] Dequeue\n";
+        cout << "[P] Peek\n";
+        cout << "[F] Full\n";
+        cout << "[Y] Empty\n";
+        cout << "[X] EXIT\n";
+        cout << "Enter your choice: ";
+        cin >> queues_Choice;
+
+        switch(queues_Choice){
+    case 'e': case 'E':
+        if (rear == MAX_SIZE - 1){
+        cout << "Queue overflow, cannot enqueue." << endl;
+        system("PAUSE");
+        system("CLS");
+        } else {
+            int queue_value;
+            cout << "Enter the value to enqueue: ";
+            cin >> queue_value;
+            if (rear == -1){
+                front = 0;
+            }
+            rear++;
+            queue_sizes[rear] = queue_value;
+            cout << queue_value << " enqueued successfully." << endl;
+            system("PAUSE");
+            system("CLS");
+
+        }
+        break;
+    case 'd': case 'D':
+        if (front == -1 || front > rear){
+            cout << "Queue is empty, cannot dequeue." << endl;
+        system("PAUSE");
+        system("CLS");
+        } else {
+        front++;
+        cout << "Value dequeued successfully." << endl;
+        system("PAUSE");
+        system("CLS");
+        }
+        break;
+    case 'p': case 'P':
+        if (front == -1 || front > rear){
+            cout << "Queue is empty." << endl;
+            system("PAUSE");
+            system("CLS");
+        } else {
+        cout << "Front element: " << queue_sizes[front] << endl;
+        system("PAUSE");
+        system("CLS");
+        }
+        break;
+    case 'f': case 'F':
+        if (rear == MAX_SIZE -1){
+            cout << "Queue is full." << endl;
+            system("PAUSE");
+            system("CLS");
+        } else {
+        cout << "Queue is not full." << endl;
+        system("PAUSE");
+        system("CLS");
+        }
+        break;
+    case 'y': case 'Y':
+        if (front == -1 || front > rear){
+            cout << "Queue is empty." << endl;
+            system("PAUSE");
+            system("CLS");
+        } else {
+        cout << "Queue is not empty." << endl;
+        system("PAUSE");
+        system("CLS");
+        }
+        break;
+    case 'x': case 'X':
+        system("CLS");
+        break;
+    default:
+        cout << "Invalid input." << endl;
+        break;
+        }
+    }while(queues_Choice != 'x' && queues_Choice != 'X');
+}
+
+int main()
+{   char ans1;
+    string name;
+
+    cout << "CS 131 - Semestral Project\n\n";
+    cout << "Group 1\n\n\n";
+    cout << "Enter your Name: ";
+    getline(cin,name);
+    system("PAUSE");
+    system("CLS");
+
+    do{
+    cout << "Welcome! " << name <<" " <<endl;
+    cout << "Choose from the following Data Structures Techniques:\n" << endl;
+    cout << "[A] - Array\n[L] - Linked List\n[S] - Stacks\n[Q] - Queues\n[E] - EXIT\n";
+    cout << "Enter: ";
+    cin >> ans1;
+
+
+    switch(ans1){
+
+    case 'a': case 'A':
+    cout << endl;
+    cout << name <<"! " << "You have chosen ARRAY. \n";
+    system("PAUSE");
+    system("CLS");
+    cout << "Welcome to Array Operations " << name << "!" <<  endl;
+    arr_operations();
+
+
+
+
+
+
+        break;
+
+    case 'L': case 'l':
+     cout << endl;
+     cout << name <<"! " << "You have chosen Linked Lists.\n";
+     system("PAUSE");
+     system("CLS");
+     cout << "Welcome to Linked List Operations " << name << "!" << endl;
+     linkedlist_Operation();
+
+
+
+
+
+        break;
+
+    case 's': case 'S':
+    cout << endl;
+    cout << name <<"! " << "You have chosen Stacks. \n";
+    system("PAUSE");
+    system("CLS");
+    cout << "Welcome to Stacks Operations " << name << "!" <<  endl;
+    Stacks_Operation();
+    break;
+
+    case 'q': case 'Q':
+    cout << endl;
+    cout << name <<"! " << "You have chosen Queues.\n";
+    system("PAUSE");
+    system("CLS");
+    cout << "Welcome to Queues Operations " << name << "!" << endl;
+    queues_Operation();
+    break;
+    case 'e': case 'E':
+        system("CLS");
+        cout << "Thank you, exitting.";
+        return 0;
+        break;
+    default:
+        system("CLS");
+        cout << "Invalid input.";
+    }
+
+} while(ans1 != 'E' || ans1 != 'e');
+
+    return 0;
+}

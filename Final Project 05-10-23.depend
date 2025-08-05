@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1684417366 source:d:\job aarron\codeblocks c++ practice\dsa\final project 05-10-23\main.cpp
+	<iostream>
+	<string>
+	<stack>
+

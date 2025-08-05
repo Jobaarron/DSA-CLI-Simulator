@@ -1,0 +1,306 @@
+#include <iostream>
+#include <string>
+#include <bits/stdc++.h>
+#include <stack>
+#include <queue>
+
+
+using namespace std;
+
+//  Last update 7:20 PM - Sollestre
+//  Last Update 8:16 PM - Misenas
+//  Last Update 11:27 PM - 5.11.23 Sollestre
+void arr_operations(){
+        //  MISENAS
+
+    const int MAX_SIZE = 100;
+    int arr[MAX_SIZE];
+    int n = 0;
+    char arr_choice;
+
+    do {
+        cout << endl;
+        cout << "Array Operations: " << endl;
+        cout << "[I] Insertion" << endl;
+        cout << "[D] Deletion" << endl;
+        cout << "[T] Traverse" << endl;
+        cout << "[S] Search"  << endl;
+        cout << "[0] EXIT" << endl;
+        cout << "Enter your choice: ";
+        cin >> arr_choice;
+
+        switch(arr_choice){
+
+case 'i': case 'I': // Array Insertion Operation
+        if (n == MAX_SIZE){
+            cout << "Array is full, cannot insert." << endl;
+            system("PAUSE");
+            system("CLS");
+        } else {
+        int arr_index,arr_value;
+        cout << "Enter the index to insert: ";
+        cin >> arr_index;
+        cout << "Enter value to insert: ";
+        cin >> arr_value;
+
+
+        for (int i = n; i>arr_index; i--){
+            arr[i] = arr[i - 1];
+        }
+        arr[arr_index] = arr_value;
+        n++;
+
+        cout << "Value inserted successfully." << endl;
+        system("PAUSE");
+        system("CLS");
+    }
+    break;
+    case 'd': case 'D': // Array Deletion Operation
+        if (n == 0){
+            cout << "Array is empty, cannot delete." << endl;
+            system("PAUSE");
+            system("CLS");
+        } else {
+        int arr_index;
+        cout << "Enter the index to delete: ";
+        cin >> arr_index;
+        for (int i = arr_index; i<n - 1; i++){
+            arr[i] = arr[i + 1];
+        }
+        n--;
+        cout << "Value deleted sucessfully." << endl;
+        system("PAUSE");
+        system("CLS");
+    }
+    break;
+    case 't': case 'T': // Array Traverse Operation
+        if (n == 0){
+            cout << "Array is empty." << endl;
+            system("PAUSE");
+            system("CLS");
+        } else {
+        cout << "Array contents: ";
+        for (int i = 0; i < n; i++){
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+        system("PAUSE");
+        system("CLS");
+    }
+        break;
+    case 's': case 'S':
+        if (n == 0){
+            cout << "Array is empty." << endl;
+            system("PAUSE");
+            system("CLS");
+        } else {
+        int arr_value, arr_index =-1;
+        cout << "Array contents: ";
+        for (int i = 0; i<n; i++){
+            cout << arr[i] << " ";
+        }
+            cout << endl;
+            cout << "Enter the value to search for: ";
+            cin >> arr_value;
+        for (int i = 0; i< n; i++){
+            if (arr[i] == arr_value){
+                arr_index = i;
+            }
+        }
+        if (arr_index == -1){
+            cout << "Value not found." << endl;
+            system("PAUSE");
+            system("CLS");
+        } else {
+        cout << "Value found at index " << arr_index << "." << endl;
+        system("PAUSE");
+        system("CLS");
+        }
+        }
+        break;
+    case '0':
+        system("CLS");
+        break;
+    default:
+        cout << "Invalid choice / Invalid Input." << endl;
+        break;
+}
+
+    } while (arr_choice != '0');
+}
+
+void Stacks_Operation(){
+
+    const int MAX_SIZE = 10;
+    stack <int> Stack_container, clone_stack;
+    int Stack_choice;
+    int value;
+
+    do{
+    cout << endl;
+    cout << "Stacks Operations: " << endl;
+    cout << "[1] Push" << endl;
+    cout << "[2] Pop" << endl;
+    cout << "[3] Peek" << endl;
+    cout << "[4] Full"  << endl;
+    cout << "[5] Empty" << endl;
+    cout << "[6] Display" << endl;;
+    cout << "[0] Exit" << endl;
+    cout << "Enter your choice: ";
+    cin >> Stack_choice;
+
+    switch (Stack_choice) {
+
+    case 1:
+
+        if(Stack_container.size() == MAX_SIZE){
+            cout << "Stacks puno";
+        }
+        else {
+        cout << "Enter a value to insert: ";
+        cin >> value;
+
+        Stack_container.push(value);
+        }
+
+        break;
+
+    case 2:
+        if(Stack_container.empty()){
+            cout << "Stack is already walang laman";
+        }
+        else{
+
+        cout << "Value " <<  Stack_container.top() <<" succesfully removed";
+            Stack_container.pop();
+
+        }
+
+        break;
+
+    case 3:
+
+        cout << "Value " << Stack_container.top() <<" is the top element";
+
+        break;
+
+    case 4:
+        if (Stack_container.size() == MAX_SIZE){
+            cout << "Stack is punong puno";
+
+        }else {
+
+        cout << "Hindi puno";
+
+        }
+
+
+        break;
+
+    case 5:
+        if (Stack_container.empty()){
+            cout << "Stack is walang laman beyah";
+        }else {
+
+        cout << "Is not empty";
+
+        }
+
+
+        break;
+
+    case 6:
+        cout << "Stack output: ";
+        clone_stack = Stack_container;
+        while(!Stack_container.empty()){
+        cout  << Stack_container.top();
+            Stack_container.pop();
+        }
+        Stack_container = clone_stack;
+
+        break;
+
+    case 0:
+
+    exit (0);
+
+        break;
+
+    default:
+        cout << "Invalid choice / Invalid Input." << endl;
+
+    }
+
+
+    }
+    while (Stack_choice != '0');
+
+}
+
+
+int main()
+{   char ans1;
+    string name;
+    do{
+    cout << "CS 131 - Semestral Project\n\n";
+    cout << "Group 1\n\n\n";
+    cout << "Enter your Name: ";
+    getline(cin,name);
+
+    cout << "Welcome! " << name <<" " <<endl;
+    cout << "Choose from the following Data Structures Techniques:\n" << endl;
+    cout << "[A] - Array\n[L] - Linked List\n[S] - Stacks\n[Q] - Queues\n[E] - EXIT\n";
+    cout << "Enter: ";
+    cin >> ans1;
+
+    switch(ans1){
+
+    case 'a': case 'A':
+    cout << endl;
+    cout << name <<"! " << "You have chosen ARRAY. \n";
+    system("PAUSE");
+    system("CLS");
+    cout << "Welcome to Array Operations " << name << "!" <<  endl;
+    arr_operations();
+
+
+
+
+
+
+        break;
+
+    case 'L': case 'l':
+
+     cout << name <<"! " << "You have chosen Linked Lists.";
+
+
+
+        break;
+
+    case 's': case 'S':
+
+    cout << name <<"! " << "You have chosen Stacks. ";
+    system("PAUSE");
+    system("CLS");
+    cout << "Welcome to Stacks Operations " << name << "!" <<  endl;
+    Stacks_Operation();
+    break;
+
+    case 'q': case 'Q':
+
+    cout << name <<"! " << "You have chosen Queue.";
+
+    break;
+    case 'e': case 'E':
+        cout << "Thank you, exitting.";
+        return 0;
+        break;
+    default:
+        cout << "Invalid input.";
+    }
+
+} while(ans1 != 'E' || ans1 != 'e');
+
+    return 0;
+}
